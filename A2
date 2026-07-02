@@ -1,0 +1,40 @@
+#include <stdio.h>
+#include <string.h>
+
+typedef struct {
+    char time1[100];
+    char time2[100];
+    int gols1;
+    int gols2;
+} Placar;
+
+int main(void) {
+    Placar p;
+
+    printf("Nome do time 1: ");
+    if (!fgets(p.time1, sizeof p.time1, stdin)) return 0;
+    p.time1[strcspn(p.time1, "\n")] = '\0';
+
+    printf("Gols do time 1: ");
+    if (scanf("%d", &p.gols1) != 1) return 0;
+    while (getchar() != '\n' && !feof(stdin));
+
+    printf("Nome do time 2: ");
+    if (!fgets(p.time2, sizeof p.time2, stdin)) return 0;
+    p.time2[strcspn(p.time2, "\n")] = '\0';
+
+    printf("Gols do time 2: ");
+    if (scanf("%d", &p.gols2) != 1) return 0;
+
+    printf("\nPlacar: %s %d x %d %s\n", p.time1, p.gols1, p.gols2, p.time2);
+
+    if (p.gols1 > p.gols2) {
+        printf("Vencedor: %s\n", p.time1);
+    } else if (p.gols2 > p.gols1) {
+        printf("Vencedor: %s\n", p.time2);
+    } else {
+        printf("Empate\n");
+    }
+
+    return 0;
+}

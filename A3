@@ -1,0 +1,40 @@
+#include <stdio.h>
+#include <string.h>
+
+typedef struct {
+    char nome[100];
+    float preco;
+    int quantidade;
+} Produto;
+
+int main(void) {
+    Produto p;
+
+    printf("Nome do produto: ");
+    if (fgets(p.nome, sizeof(p.nome), stdin) == NULL) {
+        return 1;
+    }
+    size_t len = strlen(p.nome);
+    if (len > 0 && p.nome[len - 1] == '\n') {
+        p.nome[len - 1] = '\0';
+    }
+
+    printf("Preco: ");
+    if (scanf("%f", &p.preco) != 1) {
+        return 1;
+    }
+
+    printf("Quantidade: ");
+    if (scanf("%d", &p.quantidade) != 1) {
+        return 1;
+    }
+
+    double valor_total = p.preco * p.quantidade;
+    double valor_desconto = valor_total * 0.90;
+
+    printf("\nProduto: %s\n", p.nome);
+    printf("Valor total em estoque: %.2f\n", valor_total);
+    printf("Valor com 10%% de desconto: %.2f\n", valor_desconto);
+
+    return 0;
+}

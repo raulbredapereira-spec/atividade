@@ -1,0 +1,43 @@
+#include <stdio.h>
+#include <stdbool.h>
+
+float somar(float a, float b) {
+    return a + b;
+}
+
+float subtrair(float a, float b) {
+    return a - b;
+}
+
+float multiplicar(float a, float b) {
+    return a * b;
+}
+
+bool dividir(float a, float b, float *resultado) {
+    if (b == 0.0f) {
+        return false;
+    }
+    *resultado = a / b;
+    return true;
+}
+
+int main(void) {
+    float x, y;
+    if (scanf("%f %f", &x, &y) != 2) {
+        printf("Erro na leitura dos numeros.\n");
+        return 1;
+    }
+
+    printf("Soma: %.2f\n", somar(x, y));
+    printf("Subtracao: %.2f\n", subtrair(x, y));
+    printf("Multiplicacao: %.2f\n", multiplicar(x, y));
+
+    float resultado;
+    if (dividir(x, y, &resultado)) {
+        printf("Divisao: %.2f\n", resultado);
+    } else {
+        printf("Divisao: erro, divisor zero.\n");
+    }
+
+    return 0;
+}
