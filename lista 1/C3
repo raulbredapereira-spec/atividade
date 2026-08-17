@@ -1,0 +1,55 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+typedef struct {
+    char nome[101];
+    float nota1;
+    float nota2;
+    float nota3;
+    float media;
+    char conceito;
+} Aluno;
+
+char definirConceito(float media) {
+    if (media >= 8.0f) return 'A';
+    if (media >= 6.0f) return 'B';
+    if (media >= 4.0f) return 'C';
+    return 'D';
+}
+
+Aluno calcularMedia(Aluno a) {
+    a.media = (a.nota1 + a.nota2 + a.nota3) / 3.0f;
+    a.conceito = definirConceito(a.media);
+    return a;
+}
+
+void imprimirAluno(Aluno a) {
+    printf("%s %.2f %c\n", a.nome, a.media, a.conceito);
+}
+
+int main(void) {
+    int N;
+    if (scanf("%d", &N) != 1 || N <= 0) {
+        return 0;
+    }
+
+    Aluno *alunos = malloc(sizeof(Aluno) * N);
+    if (alunos == NULL) {
+        return 1;
+    }
+
+    for (int i = 0; i < N; i++) {
+        if (scanf("%100s %f %f %f", alunos[i].nome, &alunos[i].nota1, &alunos[i].nota2, &alunos[i].nota3) != 4) {
+            free(alunos);
+            return 1;
+        }
+        alunos[i] = calcularMedia(alunos[i]);
+    }
+
+    for (int i = 0; i < N; i++) {
+        imprimirAluno(alunos[i]);
+    }
+
+    free(alunos);
+    return 0;
+}

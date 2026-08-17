@@ -1,0 +1,21 @@
+A)
+int mdc(int a, int b) {
+    if (b == 0) {
+        return a;
+    }
+    return mdc(b, a % b);
+}
+
+D)
+void hanoi(int n, char ori, char dest, char aux) {
+    if (n == 1) {
+        printf("Mova o disco 1 da haste %c para a haste %c\n", ori, dest);
+        return;
+    }
+    
+    hanoi(n - 1, ori, aux, dest);
+    
+    printf("Mova o disco %d da haste %c para a haste %c\n", n, ori, dest);
+    
+    hanoi(n - 1, aux, dest, ori);
+}

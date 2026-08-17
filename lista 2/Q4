@@ -1,0 +1,20 @@
+C
+int buscaBinaria(int v[], int n, int alvo) {
+    int ini = 0;
+    int fim = n - 1;
+
+    while (ini <= fim) {
+        int meio = ini + (fim - ini) / 2;
+
+        if (v[meio] == alvo) {
+            return meio;
+        }
+        if (v[meio] < alvo) {
+            ini = meio + 1;
+        } else {
+            fim = meio - 1;
+        }
+    }
+
+    return -1;
+}

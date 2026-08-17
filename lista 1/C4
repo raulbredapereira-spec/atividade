@@ -1,0 +1,50 @@
+#include <stdio.h>
+#include <string.h>
+
+typedef struct {
+    char nome[100];
+    float nota;
+} Aluno;
+
+void ordenarPorNota(Aluno turma[], int n) {
+    for (int i = 0; i < n - 1; i++) {
+        int max_idx = i;
+        for (int j = i + 1; j < n; j++) {
+            if (turma[j].nota > turma[max_idx].nota) {
+                max_idx = j;
+            }
+        }
+        if (max_idx != i) {
+            Aluno tmp = turma[i];
+            turma[i] = turma[max_idx];
+            turma[max_idx] = tmp;
+        }
+    }
+}
+
+int main(void) {
+    int n;
+    printf("Número de alunos: ");
+    if (scanf("%d", &n) != 1 || n <= 0) return 0;
+    getchar(); // consume newline
+
+    Aluno turma[n];
+    for (int i = 0; i < n; i++) {
+        printf("Nome do aluno %d: ", i+1);
+        if (!fgets(turma[i].nome, sizeof(turma[i].nome), stdin)) turma[i].nome[0] = '\0';
+        // remove newline
+        turma[i].nome[strcspn(turma[i].nome, "\n")] = '\0';
+        printf("Nota do aluno %d: ", i+1);
+        if (scanf("%f", &turma[i].nota) != 1) turma[i].nota = 0.0f;
+        getchar(); // consume newline
+    }
+
+    ordenarPorNota(turma, n);
+
+    printf("\nBoletim em ordem de ranking:\n");
+    for (int i = 0; i < n; i++) {
+        printf("%d. %s - %.2f\n", i+1, turma[i].nome, turma[i].nota);
+    }
+
+    return 0;
+}

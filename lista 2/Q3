@@ -1,0 +1,28 @@
+A)
+int s(int n) {
+        if (n < 10) {
+        return n;
+    }
+    return (n % 10) + s(n / 10);
+}
+
+
+b) int contador(char s[], int i, char c) {
+    if (s[i] == '\0') {
+        return 0;
+    }
+    int coincide = (s[i] == c) ? 1 : 0
+    return coincide + contador(s, i + 1, c);
+}
+
+
+c)
+int ehPalindromo(char s[], int ini, int fim) {
+    if (ini >= fim) {
+        return 1;
+    }
+    if (s[ini] != s[fim]) {
+        return 0;
+    }
+    return ehPalindromo(s, ini + 1, fim - 1);
+}
