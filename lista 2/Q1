@@ -1,0 +1,2 @@
+a) caso base: é a condição que para a repetição. evita que a função rode para sempre e crashe
+b) O(1); O(n); O(log n); O(n²)

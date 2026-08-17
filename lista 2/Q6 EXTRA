@@ -1,0 +1,8 @@
+int somaVetor(int v[], int n) {
+    if (n <= 0) {
+        return 0;
+    }
+    return v[0] + somaVetor(v + 1, n - 1);
+}
+
+o caso-base é n==0, que é quando não tem mais nada pra somar, aí a função retorna zero e para o caso recursivo
